@@ -76,6 +76,11 @@ func importCmd(cli *cli) *cobra.Command {
 			j, _ := yaml.Marshal(&yamlData)
 			fmt.Printf("yamlData is: \n%+v", string(j))
 
+			appChanges, err := importcmd.ImportApps(cli, yamlData, config)
+			if err != nil {
+				return err
+			}
+
 			// Config file getConfig()
 			// Take: config file path
 			// Do: parse the JSON into a struct instance
